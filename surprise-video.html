@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One More Thing 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BACKGROUND */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #2b1e16, #0f0a07);
+  color: white;
+}
+
+/* LAYOUT */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.card {
+  max-width: 720px;
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 48px 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* TEXT */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin-bottom: 16px;
+}
+
+p {
+  opacity: 0.85;
+  margin-bottom: 28px;
+}
+
+/* VIDEO */
+video {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 36px;
+  padding: 14px 36px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #ff4d6d, #ff8fab);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* HINT */
+.tap {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <div class="card">
+    <h1>Just one more thing…</h1>
+    <p>😉😁😁</p>
+
+    <video controls playsinline>
+      <source src="videos/message.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="tap">
+      Tap ▶️ to play
+    </div>
+
+    <button class="btn" onclick="location.href='surprises.html'">
+      Back to Surprises
+    </button>
+  </div>
+</section>
+
+</body>
+</html>

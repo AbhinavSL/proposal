@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💌</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BACKGROUND */
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: radial-gradient(circle at top, #2b1e16, #0f0a07);
+  color: #3f2a1d;
+  min-height: 100vh;
+}
+
+/* VIGNETTE */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.6));
+  pointer-events: none;
+}
+
+/* LAYOUT */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* LETTER CARD */
+.card {
+  max-width: 720px;
+  width: 100%;
+  background: linear-gradient(to bottom, #f6ecd9, #efe1c6);
+  border-radius: 18px;
+  padding: 56px 40px;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.35);
+  animation: fadeInk 1.6s ease forwards;
+  opacity: 0;
+}
+
+/* INK FADE */
+@keyframes fadeInk {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* DATE */
+.date {
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* TITLE */
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.6rem, 6vw, 3.4rem);
+  margin-bottom: 28px;
+  color: #5a3e2b;
+}
+
+/* LETTER TEXT */
+p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 22px;
+}
+
+/* SIGNATURE */
+.signature {
+  margin-top: 36px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #5a3e2b;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 44px;
+  padding: 12px 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(90,62,43,0.4);
+  background: transparent;
+  color: #5a3e2b;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .card {
+    padding: 44px 28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <div class="card">
+    <div class="date">
+      February 06
+    </div>
+
+    <h1>hey baby,For You 💌</h1>
+
+    <p>
+      I don’t say this enough, but you mean more to me than you probably realize.
+    </p>
+
+    <p>
+      You make ordinary days feel lighter.  
+      You make hard moments easier.  
+      And somehow, just knowing you’re there makes everything better.
+    </p>
+
+    <p>
+      This isn’t about big promises or perfect words.  
+      It’s just me saying: I choose you — today, and every day I get.
+    </p>
+
+    <div class="signature">
+      — Yours, always ❤️
+    </div>
+
+    <button class="btn" onclick="location.href='surprises.html'">
+      Back to Surprises
+    </button>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surprise Four ✨</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BACKGROUND */
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: radial-gradient(circle at top, #1c1410, #090604);
+  color: #f2e9dc;
+  min-height: 100vh;
+}
+
+/* VIGNETTE */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.65));
+  pointer-events: none;
+}
+
+/* LAYOUT */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 14px;
+  animation: floatUp 1s ease forwards;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+/* CARD */
+.card {
+  max-width: 720px;
+  width: 100%;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 56px 40px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  animation: fadeIn 1.4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* TITLE */
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.6rem, 6vw, 3.4rem);
+  margin-bottom: 24px;
+  color: #f5d7b2;
+}
+
+/* TEXT */
+p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 26px;
+  opacity: 0.95;
+}
+
+/* PROMISE LIST */
+.promises {
+  text-align: left;
+  max-width: 480px;
+  margin: 32px auto;
+}
+
+.promises li {
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+}
+
+/* SIGNATURE */
+.signature {
+  margin-top: 36px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #f5d7b2;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 44px;
+  padding: 12px 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(245,215,178,0.4);
+  background: transparent;
+  color: #f5d7b2;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .card {
+    padding: 44px 28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <div class="card">
+    <h1>Looking Ahead ✨</h1>
+
+    <p>
+      I don’t know exactly what the future looks like.
+      But I know one thing for sure —
+      I want you in it.
+    </p>
+
+    <p>
+      So here’s what I promise you.
+      Not perfectly. Just honestly.
+    </p>
+
+    <ul class="promises">
+      <li>To choose you, even on ordinary days.</li>
+      <li>To listen when you speak, and when you don’t.</li>
+      <li>To grow with you, not away from you.</li>
+      <li>To laugh with you, especially when life gets heavy.</li>
+    </ul>
+
+    <p>
+      This isn’t a grand declaration.
+      It’s a quiet one.
+      And I mean every word.
+    </p>
+
+    <div class="signature">
+      — Always yours ❤️
+    </div>
+
+    <button class="btn" onclick="location.href='surprises.html'">
+      Back to Surprises
+    </button>
+  </div>
+</section>
+
+<script>
+let lastTime = 0;
+
+function createHeart(x, y) {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = x + "px";
+  heart.style.top = y + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 1000);
+}
+
+document.addEventListener("mousemove", (e) => {
+  const now = Date.now();
+  if (now - lastTime < 50) return; // throttle
+  lastTime = now;
+  createHeart(e.clientX, e.clientY);
+});
+
+document.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  createHeart(touch.clientX, touch.clientY);
+});
+</script>
+
+
+
+</body>
+</html>

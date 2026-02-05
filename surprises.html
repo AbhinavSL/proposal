@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Surprises 🎁</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1b1b1b, #000);
+  color: white;
+}
+
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.card {
+  max-width: 700px;
+  background: #FC94AF;
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 40px 28px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 40px;
+}
+
+.surprises {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.box {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 40px 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.box.locked {
+  opacity: 0.35;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+.box.locked::after {
+  content: "🔒";
+  display: block;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+
+.box:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.15);
+}
+
+.box h3 {
+  font-size: 1.2rem;
+}
+</style>
+</head>
+
+<body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="bg-rose-petals.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<section>
+  <div class="card">
+    <h1>I planned a few surprises for you 🎁</h1>
+
+        <div class="box" onclick="location.href='surprise1.html'">
+            <h3>Surprise One 💌</h3>
+        </div>
+
+        <div class="box" onclick="location.href='surprise2.html'">
+             <h3>Surprise Two 🌸</h3>
+        </div>
+
+        <div class="box" onclick="location.href='surprise3.html'">
+           <h3>Surprise Three ✨</h3>
+        </div>
+
+        <div class="box locked" id="surprise4" onclick="location.href='surprise4.html'">
+           <h3>Surprise Four 💫</h3>
+        </div>
+    </div>
+</section>
+
+<script>
+if (localStorage.getItem("unlock4") === "true") {
+  document.getElementById("surprise4").classList.remove("locked");
+}
+</script>
+
+</body>
+</html>

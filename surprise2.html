@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surprise Two 🌸</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background: linear-gradient(
+    120deg,
+    #ff758f,
+    #ff7eb3,
+    #8ec5fc,
+    #a9f1df
+  );
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.card {
+  max-width: 720px;
+  width: 100%;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 48px 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.progress {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin-bottom: 24px;
+}
+
+.options {
+  display: grid;
+  gap: 14px;
+}
+
+.option {
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.option:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+.option:active {
+  transform: scale(0.97);
+}
+
+.feedback {
+  margin-top: 24px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.btn {
+  margin-top: 32px;
+  padding: 14px 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff4d6d, #ff8fab);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <div class="card">
+    <div class="progress" id="progress">Question 1 of 3</div>
+
+    <h1 id="question">
+      What’s my favorite thing about you?
+    </h1>
+
+    <div class="options" id="options">
+      <div class="option" onclick="answer('Your smile 😌')">Your smile 😌</div>
+      <div class="option" onclick="answer('Your heart 💖')">Your heart 💖</div>
+      <div class="option" onclick="answer('Everything 😏')">Everything 😏</div>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <button class="btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+  </div>
+</section>
+
+<script>
+const questions = [
+  {
+    q: "What’s my favorite thing about you?",
+    options: ["Your smile 😌", "Your heart 💖", "Everything 😏"],
+    response: "Correct answer: everything. Obviously."
+  },
+  {
+    q: "If we had a free day together, what would I choose?",
+    options: ["Long talks 🫶", "Food + laughs 🍕", "All of it 💫"],
+    response: "There’s no wrong answer. I just want you there."
+  },
+  {
+    q: "What are you to me?",
+    options: ["My favorite person ❤️", "My safe place 🏡", "My future ✨"],
+    response: "All of the above. And more."
+  }
+];
+
+let current = 0;
+
+function answer(text) {
+  document.getElementById("feedback").innerText = questions[current].response;
+  document.getElementById("nextBtn").style.display = "inline-block";
+
+  // Disable further clicks
+  document.querySelectorAll(".option").forEach(opt => {
+    opt.style.pointerEvents = "none";
+  });
+}
+
+function nextQuestion() {
+  current++;
+
+  if (current >= questions.length) {
+    endQuiz();
+    return;
+  }
+
+  document.getElementById("progress").innerText = `Question ${current + 1} of 3`;
+  document.getElementById("question").innerText = questions[current].q;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  questions[current].options.forEach(opt => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.innerText = opt;
+    div.onclick = () => answer(opt);
+    optionsDiv.appendChild(div);
+  });
+
+  document.getElementById("feedback").innerText = "";
+  document.getElementById("nextBtn").style.display = "none";
+}
+
+function endQuiz() {
+  document.querySelector(".card").innerHTML = `
+    <h1>You passed 😌</h1>
+    <p style="opacity:0.9; margin-top:16px;">
+      Not because you chose the right answers…<br>
+      But because you’re you.
+    </p>
+    <button class="btn" style="display:inline-block;" onclick="location.href='surprises.html'">
+      Back to Surprises
+    </button>
+  `;
+}
+</script>
+
+<script>
+const code = [
+  "ArrowUp","ArrowUp","ArrowDown","ArrowDown",
+  "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"
+];
+let index = 0;
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === code[index]) {
+    index++;
+    if (index === code.length) {
+      document.body.style.transition = "all 1s ease";
+      document.body.style.filter = "hue-rotate(120deg)";
+      alert("Okay hacker 😏 You unlocked secret mode.");
+      index = 0;
+    }
+  } else {
+    index = 0;
+  }
+});
+</script>
+
+
+</body>
+</html>
