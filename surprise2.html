@@ -105,6 +105,16 @@ h1 {
   font-weight: 500;
   display: none;
 }
+
+.bg-gif {
+  position: fixed;
+  width: 90px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+  transition: top 4s ease, left 4s ease, transform 4s ease;
+}
+
 </style>
 </head>
 
@@ -198,7 +208,50 @@ function endQuiz() {
       Back to Surprises
     </button>
   `;
+
+  spawnMultipleGifs();
 }
+
+</script>
+
+<script>
+function spawnMultipleGifs() {
+  const gifSources = [
+    "gifs/floating.gif",
+    "gifs/floating.gif",
+    "gifs/floating.gif"
+  ];
+
+  const GIF_COUNT = 5; // ← sweet spot
+  const gifs = [];
+
+  for (let i = 0; i < GIF_COUNT; i++) {
+    const gif = document.createElement("img");
+    gif.src = gifSources[Math.floor(Math.random() * gifSources.length)];
+    gif.className = "bg-gif";
+
+    document.body.appendChild(gif);
+    gifs.push(gif);
+
+    moveGif(gif);
+  }
+
+  setInterval(() => {
+    gifs.forEach(gif => moveGif(gif));
+  }, 4000);
+}
+
+function moveGif(gif) {
+  const size = 90;
+  const x = Math.random() * (window.innerWidth - size);
+  const y = Math.random() * (window.innerHeight - size);
+  const rotate = Math.random() * 20 - 10;
+
+  gif.style.left = x + "px";
+  gif.style.top = y + "px";
+  gif.style.transform = `rotate(${rotate}deg)`;
+}
+
 </script>
 
 <script>

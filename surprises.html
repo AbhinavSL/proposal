@@ -55,10 +55,10 @@ h1 {
 
 .surprises {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
-  max-width: 700px;
-  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .box {
@@ -83,13 +83,51 @@ h1 {
 
 
 .box:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) rotate(0deg);
   background: rgba(255,255,255,0.15);
 }
 
 .box h3 {
   font-size: 1.2rem;
 }
+
+@keyframes wobble {
+  0%   { transform: rotate(0deg); }
+  15%  { transform: rotate(-2deg); }
+  30%  { transform: rotate(2deg); }
+  45%  { transform: rotate(-1.5deg); }
+  60%  { transform: rotate(1.5deg); }
+  75%  { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Apply wobble */
+.box {
+  animation: wobble 4s ease-in-out infinite;
+}
+
+/* Pause wobble on interaction */
+.box:hover,
+.box:active {
+  animation-play-state: paused;
+}
+
+.surprises .box:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.surprises .box:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.surprises .box:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
+.surprises .box:nth-child(4) {
+  animation-delay: 2.4s;
+}
+
 </style>
 </head>
 
@@ -102,25 +140,25 @@ h1 {
 <div class="overlay"></div>
 
 <section>
-  <div class="card">
+  <div class="card"><div class="card">
     <h1>I planned a few surprises for you 🎁</h1>
-
-        <div class="box" onclick="location.href='surprise1.html'">
-            <h3>Surprise One 💌</h3>
-        </div>
-
-        <div class="box" onclick="location.href='surprise2.html'">
-             <h3>Surprise Two 🌸</h3>
-        </div>
-
-        <div class="box" onclick="location.href='surprise3.html'">
-           <h3>Surprise Three ✨</h3>
-        </div>
-
-        <div class="box locked" id="surprise4" onclick="location.href='surprise4.html'">
-           <h3>Surprise Four 💫</h3>
-        </div>
+    <div class="surprises">
+    <div class="box" onclick="location.href='surprise1.html'">
+      <h3>Surprise One 💌</h3>
     </div>
+
+    <div class="box" onclick="location.href='surprise2.html'">
+      <h3>Surprise Two 🌸</h3>
+    </div>
+
+    <div class="box" onclick="location.href='surprise3.html'">
+      <h3>Surprise Three ✨</h3>
+    </div>
+
+    <div class="box locked" id="surprise4" onclick="location.href='surprise4.html'">
+      <h3>Surprise Four 💫</h3>
+    </div>
+  </div>
 </section>
 
 <script>

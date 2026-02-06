@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Dancing+Script:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: radial-gradient(circle at top, #0f0a08, #030201);
+  color: #f3eadf;
+  min-height: 100vh;
+}
+
+/* VIGNETTE */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.7));
+  pointer-events: none;
+}
+
+/* LAYOUT */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* CARD */
+.card {
+  max-width: 680px;
+  width: 100%;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 60px 40px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  animation: fadeIn 2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* TEXT */
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3rem, 7vw, 3.8rem);
+  margin-bottom: 18px;
+  color: #f7d9b6;
+}
+
+.date {
+  font-style: italic;
+  opacity: 0.8;
+  margin-bottom: 28px;
+}
+
+p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 22px;
+  opacity: 0.95;
+}
+
+/* HIDDEN LINE */
+.secret {
+  margin-top: 24px;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* SIGNATURE */
+.signature {
+  margin-top: 36px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  color: #f7d9b6;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 48px;
+  padding: 12px 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(247,217,182,0.4);
+  background: transparent;
+  color: #f7d9b6;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SOFT BACKGROUND AUDIO -->
+<audio id="bgAudio" src="audio/ambient.mp3" loop></audio>
+
+<section>
+  <div class="card" id="card">
+    <h1>That’s all ❤️</h1>
+
+    <div class="date" id="date"></div>
+
+    <p>
+      That’s everything I wanted to show you.
+    </p>
+
+    <p>
+      Not because it’s for Valentine’s Day,
+      but because you matter to me —
+      today, tomorrow,
+      and on all the ordinary days in between.
+    </p>
+
+    <p>
+      Thank you for being you.
+      And thank you for being here.
+    </p>
+
+    <div class="secret" id="secret">
+      (If you’re reading this… I hope you smiled at least once.)
+    </div>
+
+    <div class="signature">
+      — With all my heart
+    </div>
+
+    <button class="btn" id="restartBtn" onclick="restart()">
+      Start from the beginning
+    </button>
+  </div>
+</section>
+
+<script>
+document.addEventListener("click", () => {
+  const audio = document.getElementById("bgAudio");
+  if (!audio.paused) return;
+
+  audio.volume = 0;
+  audio.play().catch(()=>{});
+
+  let v = 0;
+  const fade = setInterval(() => {
+    v += 0.05;
+    audio.volume = Math.min(v, 0.45);
+    if (v >= 0.45) clearInterval(fade);
+  }, 120);
+}, { once: true });
+
+
+/* 📅 DYNAMIC DATE */
+const dateEl = document.getElementById("date");
+const today = new Date();
+dateEl.innerText = today.toLocaleDateString(undefined, {
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});
+
+/* 🔒 DISABLE RESTART AFTER FIRST VIEW */
+const btn = document.getElementById("restartBtn");
+if (localStorage.getItem("endSeen")) {
+  btn.classList.add("disabled");
+  btn.innerText = "Thank you for reading ❤️";
+} else {
+  localStorage.setItem("endSeen", "true");
+}
+
+function restart() {
+  location.href = "index.html";
+}
+
+/* 🕯️ TAP TO REVEAL SECRET */
+let taps = 0;
+document.getElementById("card").addEventListener("click", () => {
+  taps++;
+  if (taps === 5) {
+    document.getElementById("secret").style.opacity = 0.9;
+  }
+});
+</script>
+
+</body>
+</html>
